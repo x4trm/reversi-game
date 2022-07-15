@@ -25,7 +25,12 @@ namespace reversi_game
             {
                 board.ShowBoard();
                 point = active.MakeMove();
-                while (point.X < 0 || point.Y < 0 || point.X>=board.boardSize || point.Y>=board.boardSize || board.Put(point,active.GetSign())==false)
+                /*                do
+                                {
+                                    point = active.MakeMove();
+
+                                }while(point.X>=board.boardSize || point.Y>=board.boardSize || !board.Put(point,active.GetSign()));*/
+                while (point.X < 0 || point.Y < 0 || point.X >= board.boardSize || point.Y >= board.boardSize || board.Put(point, active.GetSign()) == false)
                 {
                     point = active.MakeMove();
                 }

@@ -72,21 +72,24 @@ namespace reversi_game
             int tempx, tempy;
             int i = x + dx;
             int j = y + dy;
+            
             if (i <= 0 || i >= boardSize || j <= 0 || j >= boardSize || board[x, y] == playerSign)
             {
-                return change;
+                return false;
             }
-            while (i >= 0 && i < boardSize && j < boardSize && j >= 0 && board[x, y] != playerSign)
+            
+            while (i >= 0 && i < boardSize && j < boardSize && j >= 0 && board[i, j] != playerSign)
             {
-                if (board[x, y] == 0)
+                
+                if (board[i, j] == Field.FREE)
                     break;
                 i += dx;
                 j += dy;
-                if (i <= 0 || i > boardSize || j <= 0 || j >= boardSize)
+                if (i < 0 || i >= boardSize || j < 0 || j >= boardSize)
                     break;
 
             }
-            if (board[x, y] == playerSign)
+            if (i >= 0 && i < boardSize && j < boardSize && j >= 0 && board[i, j] == playerSign)
             {
                 tempx = x + dx;
                 tempy = y + dy;
@@ -95,7 +98,7 @@ namespace reversi_game
                     change = true;
                     if (!verification)
                     {
-                        board[x, y] = playerSign;
+                        board[tempx, tempy] = playerSign;
                     }
                     tempx += dx;
                     tempy += dy;
@@ -129,12 +132,12 @@ namespace reversi_game
         {
             int x = point.X;
             int y = point.Y;
-            if (TurnOver(x, y, playerSign, false))
+            if (TurnOver(x, y, playerSign, true))
             {
+                TurnOver(x, y, playerSign, false);
                 board[x, y] = playerSign;
                 return true;
-            }
-            else
+            } else
             {
                 return false;
             }
