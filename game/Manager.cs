@@ -19,18 +19,14 @@ namespace reversi_game
         {
             board = new Board(size);
             player1 = new Human();
+            // player1 = new Bot();
             player2 = new Bot();
             active = player1;
             while (game)
             {
                 board.ShowBoard();
                 point = active.MakeMove();
-                /*                do
-                                {
-                                    point = active.MakeMove();
-
-                                }while(point.X>=board.boardSize || point.Y>=board.boardSize || !board.Put(point,active.GetSign()));*/
-                while (point.X < 0 || point.Y < 0 || point.X >= board.boardSize || point.Y >= board.boardSize || board.Put(point, active.GetSign()) == false)
+                while (point.X < 0 || point.Y < 0 || point.X>=board.boardSize || point.Y>=board.boardSize || board.Put(point,active.GetSign())==false)
                 {
                     point = active.MakeMove();
                 }

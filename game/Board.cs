@@ -72,15 +72,14 @@ namespace reversi_game
             int tempx, tempy;
             int i = x + dx;
             int j = y + dy;
-            
             if (i <= 0 || i >= boardSize || j <= 0 || j >= boardSize || board[x, y] == playerSign)
             {
                 return false;
             }
-            
+
             while (i >= 0 && i < boardSize && j < boardSize && j >= 0 && board[i, j] != playerSign)
             {
-                
+
                 if (board[i, j] == Field.FREE)
                     break;
                 i += dx;
